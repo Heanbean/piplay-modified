@@ -1,0 +1,33 @@
+Attempt to initialise 'Armored Warriors (941024 Europe)'
+Screen Size: 384 x 224
+pwge.03c     ...  512Kb program  (OK)
+pwge.04c     ...  512Kb program  (OK)
+pwge.05b     ...  512Kb program  (OK)
+pwg.06       ...  512Kb program  (OK)
+pwg.07       ...  512Kb program  (OK)
+pwg.08       ...  512Kb program  (OK)
+pwg.09a      ...  512Kb program  (OK)
+pwg.10       ...  512Kb program  (OK)
+pwg.13m      ... 4096Kb graphics  (OK)
+pwg.15m      ... 4096Kb graphics  (OK)
+pwg.17m      ... 4096Kb graphics  (OK)
+pwg.19m      ... 4096Kb graphics  (OK)
+pwg.14m      ... 1024Kb graphics  (OK)
+pwg.16m      ... 1024Kb graphics  (OK)
+pwg.18m      ... 1024Kb graphics  (OK)
+pwg.20m      ... 1024Kb graphics  (OK)
+pwg.01       ...  128Kb program  (OK)
+pwg.02       ...  128Kb program  (OK)
+pwg.11m      ... 2048Kb sound  (OK)
+pwg.12m      ... 2048Kb sound  (OK)
+Lets go!
+ALSA: Period size: 736 frames
+ALSA: Buffer size: 2940 frames
+ALSA: Period size: 2944 bytes
+ALSA: Buffer size: 11760 bytes
+Finished emulating
+---- Shutdown Finalburn Alpha plus ----
+
+ALSA: FIFO Underrun: 5
+ALSA: FIFO Overrun: 0
+ALSA: Snd Underrun 0

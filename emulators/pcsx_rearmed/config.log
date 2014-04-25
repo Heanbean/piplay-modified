@@ -1,0 +1,11 @@
+gcc /tmp/pcsx-conf--2446-.c -o /tmp/pcsx-conf--2446- -ldl -lm -lpthread
+gcc -mfpu=vfp /tmp/pcsx-conf--2446-.c -o /tmp/pcsx-conf--2446- -ldl -lm -lpthread -lz
+gcc -mfpu=vfp /tmp/pcsx-conf--2446-.c -o /tmp/pcsx-conf--2446- -lpng -ldl -lm -lpthread -lz
+gcc -mfpu=vfp -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT /tmp/pcsx-conf--2446-.c -o /tmp/pcsx-conf--2446- -L/usr/lib/arm-linux-gnueabihf -lSDL -lpng -ldl -lm -lpthread -lz
+gcc -mfpu=vfp -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c /tmp/pcsx-conf--2446-.c -o /tmp/pcsx-conf--2446-.o
+gcc -mfpu=vfp -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT /tmp/pcsx-conf--2446-.c -o /tmp/pcsx-conf--2446- -L/usr/lib/arm-linux-gnueabihf -lSDL -lpng -ldl -lm -lpthread -lz -I/opt/vc/include -I/opt/vc/include/interface/vcos/pthreads -lEGL -lGLES_CM -L/opt/vc/lib
+/usr/bin/ld: cannot find -lGLES_CM
+collect2: ld returned 1 exit status
+gcc -mfpu=vfp -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT /tmp/pcsx-conf--2446-.c -o /tmp/pcsx-conf--2446- -L/usr/lib/arm-linux-gnueabihf -lSDL -lpng -ldl -lm -lpthread -lz -I/opt/vc/include -I/opt/vc/include/interface/vcos/pthreads -lEGL -lGLESv1_CM -L/opt/vc/lib
+gcc -mfpu=vfp -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c /tmp/pcsx-conf--2446-.c -o /tmp/pcsx-conf--2446-.o
+gcc -mfpu=vfp -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -c /tmp/pcsx-conf--2446-.c -o /tmp/pcsx-conf--2446-.o -Wno-unused-result
