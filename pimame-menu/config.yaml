@@ -1,11 +1,11 @@
 options:
   max_fps: 20
-  show_ip: Yes
+  show_ip: No
   show_update: Yes
-  num_items_per_row: 5
+  num_items_per_row: 1
   fullscreen: Yes
   resolution: "0,0"
-  item_height: 240
+  item_height: 55
   padding: 0
   selection_size: 11
   header_height: 140
@@ -17,7 +17,7 @@ options:
   item_color: "255,255,255"
   header_color: "255,255,255"
   rom_dot_color: "228,56,65"
-  icon_pack_path: "icons/modified/"
+  icon_pack_path: "icons/Tron/"
   background_image: "background.jpg"
   logo_image: "logo.png"
   font_size: 19
@@ -25,6 +25,8 @@ options:
   sort_items_alphanum: No
   sort_items_with_roms_first: Yes
   hide_items_without_roms: No
+  display_labels: No
+  display_rom_count: No
 menu_items:
   - label: SNES
     visible: Yes
@@ -48,7 +50,7 @@ menu_items:
     visible: Yes
     icon_file: neogeo.png
     icon_selected: neogeo-selected.png
-    roms: /home/pi/pimame/roms/neogeo/
+    roms: /home/pi/pimame/roms/neogeo/1/
     full_path: yes
     extension: yes
     command: /home/pi/pimame/emulators/fba/fba2x
@@ -86,7 +88,7 @@ menu_items:
     roms: /home/pi/pimame/roms/test/nes/
     full_path: no
     extension: yes
-    command: advmess nes -cart  
+    command: advmess nes -cart   
 
   - label: Atari 2600
     visible: Yes

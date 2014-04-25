@@ -99,31 +99,33 @@ class PMMenuItem(pygame.sprite.Sprite):
 
 		#font = pygame.font.Font(global_opts.font_file, global_opts.font_size)
 		#text = font.render(self.label, 1, (0, 0, 0))
-		label = PMLabel(self.label, global_opts.font, global_opts.text_color, global_opts.item_color)
-		textpos = label.rect
-		textpos.x = global_opts.padding
-		textpos.y = global_opts.item_height - textpos.height - global_opts.padding
+		if global_opts.display_labels:
+			label = PMLabel(self.label, global_opts.font, global_opts.text_color, global_opts.item_color)
+			textpos = label.rect
+			textpos.x = global_opts.padding
+			textpos.y = global_opts.item_height - textpos.height - global_opts.padding
 
-		self.image.blit(label.image, textpos)
+			self.image.blit(label.image, textpos)
 
-		if self.type == self.ROM_LIST:
-			self.update_num_roms()
+		if global_opts.display_rom_count:
+			if self.type == self.ROM_LIST:
+				self.update_num_roms()
 
-		if self.type == self.ROM_LIST:
-			if self.num_roms == 0:
-				self.image.set_alpha(64)
-			else:
-				# draw rom circle
-				rom_rect = (item_width - global_opts.padding - 30, global_opts.item_height - global_opts.padding - 30, 30, 30)
-				pygame.draw.rect(self.image, global_opts.rom_dot_color, rom_rect)
+			if self.type == self.ROM_LIST:
+				if self.num_roms == 0:
+					self.image.set_alpha(64)
+				else:
+					# draw rom circle
+					rom_rect = (item_width - global_opts.padding - 30, global_opts.item_height - global_opts.padding - 30, 30, 30)
+					pygame.draw.rect(self.image, global_opts.rom_dot_color, rom_rect)
 
-				#text = font.render(str(num_roms), 1, (255, 255, 255))
-				label = PMLabel(str(self.num_roms), global_opts.font, global_opts.text_highlight_color, global_opts.rom_dot_color)
-				textpos = label.rect
+					#text = font.render(str(num_roms), 1, (255, 255, 255))
+					label = PMLabel(str(self.num_roms), global_opts.font, global_opts.text_highlight_color, global_opts.rom_dot_color)
+					textpos = label.rect
 
-				textpos.centerx = rom_rect[0] + rom_rect[2] / 2
-				textpos.centery = rom_rect[1] + rom_rect[3] / 2
-				self.image.blit(label.image, textpos)
+					textpos.centerx = rom_rect[0] + rom_rect[2] / 2
+					textpos.centery = rom_rect[1] + rom_rect[3] / 2
+					self.image.blit(label.image, textpos)
 
 		self.rect = self.image.get_rect()
 		#print self.command

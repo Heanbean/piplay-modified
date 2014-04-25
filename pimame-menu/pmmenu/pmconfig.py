@@ -25,6 +25,8 @@ class PMCfg:
 
 class PMOptions:
 	def __init__(self, opts):
+	
+			 
 		self.max_fps = opts['max_fps']
 		self.show_ip = opts['show_ip']
 		self.show_update = opts['show_update']
@@ -50,6 +52,8 @@ class PMOptions:
 		self.sort_items_alphanum = opts['sort_items_alphanum']
 		self.sort_items_with_roms_first = opts['sort_items_with_roms_first']
 		self.hide_items_without_roms = opts['hide_items_without_roms']
+		self.display_rom_count = opts['display_rom_count']
+		self.display_labels = opts['display_labels']
 
 		pygame.font.init()
 		self.font = pygame.font.Font(self.font_file, self.font_size)
