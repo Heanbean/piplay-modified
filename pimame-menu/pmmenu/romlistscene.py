@@ -74,6 +74,10 @@ class RomListScene(object):
 					self.set_selected_index(self.DIRECTION_UP)
 				elif event.dict['axis'] == 1 and event.dict['value'] > 0:
 					self.set_selected_index(self.DIRECTION_DOWN)
+				elif event.dict['axis'] == 0 and event.dict['value'] < 0:
+					self.set_selected_index(self.DIRECTION_LEFT)
+				elif event.dict['axis'] == 0 and event.dict['value'] > 0:
+					self.set_selected_index(self.DIRECTION_RIGHT)
 			elif event.type == pygame.JOYBUTTONDOWN:
 				if event.button == 0:
 					self.run_sprite_command(self.selected_item)
