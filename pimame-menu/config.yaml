@@ -10,18 +10,19 @@ options:
   selection_size: 11
   header_height: 140
   disabled_alpha: 128
-  background_color: "74,239,76"
+  background_color: "74,239,76,0"
   selection_color: "74,239,76"
-  text_color: "0,0,0"
-  text_highlight_color: "255,255,255"
+  text_color: "0,255,255"
+  text_highlight_color: "90,255,255"
   item_color: "255,255,255"
   header_color: "255,255,255"
   rom_dot_color: "228,56,65"
+  label_padding: [0, 30, 0, 20]   #[top, right, bottom, left]
   icon_pack_path: "icons/Tron/"
-  background_image: "background.jpg"
+  background_image: "background2.jpg"
   logo_image: "logo.png"
   font_size: 19
-  font_file: "assets/fonts/Lato-Bold.ttf"
+  font_file: "default.ttf"
   sort_items_alphanum: No
   sort_items_with_roms_first: Yes
   hide_items_without_roms: No
@@ -32,7 +33,7 @@ menu_items:
     visible: Yes
     icon_file: snes.png
     icon_selected: snes-selected.png
-    roms: /home/pi/pimame/roms/test/nes/
+    roms: /home/pi/pimame/roms/snes/
     full_path: yes
     override_menu: no
     command: /home/pi/pimame/emulators/pisnes/snes9x
@@ -41,7 +42,7 @@ menu_items:
     visible: Yes
     icon_file: mame4all.png
     icon_selected: mame4all-selected.png
-    roms: /home/pi/pimame/roms/mame4all/1/
+    roms: /home/pi/pimame/roms/mame4all/
     full_path: no
     override_menu: no
     command: /home/pi/pimame/emulators/mame4all-pi/mame 
@@ -50,7 +51,7 @@ menu_items:
     visible: Yes
     icon_file: neogeo.png
     icon_selected: neogeo-selected.png
-    roms: /home/pi/pimame/roms/neogeo/1/
+    roms: /home/pi/pimame/roms/neogeo/
     full_path: yes
     extension: yes
     command: /home/pi/pimame/emulators/fba/fba2x
@@ -59,7 +60,7 @@ menu_items:
     visible: Yes
     icon_file: advmame.png
     icon_selected: advmame-selected.png
-    roms: /home/pi/pimame/roms/advmame/1/
+    roms: /home/pi/pimame/roms/advmame/
     full_path: no
     command: advmame 
 
@@ -67,7 +68,7 @@ menu_items:
     visible: Yes
     icon_file: fba.png
     icon_selected: fba-selected.png
-    roms: /home/pi/pimame/roms/pifba/1/
+    roms: /home/pi/pimame/roms/pifba/
     full_path: yes
     extension: yes
     override_menu: no
@@ -77,7 +78,7 @@ menu_items:
     visible: Yes
     icon_file: genesis.png
     icon_selected: genesis-selected.png
-    roms: /home/pi/pimame/roms/genesis/1/
+    roms: /home/pi/pimame/roms/genesis/
     full_path: yes
     command: /home/pi/pimame/emulators/dgen-sdl-1.32/dgen
 
@@ -85,10 +86,10 @@ menu_items:
     visible: Yes
     icon_file: nes.png
     icon_selected: nes-selected.png
-    roms: /home/pi/pimame/roms/test/nes/
+    roms: /home/pi/pimame/roms/nes/
     full_path: no
     extension: yes
-    command: advmess nes -cart   
+    command: advmess nes -cart
 
   - label: Atari 2600
     visible: Yes

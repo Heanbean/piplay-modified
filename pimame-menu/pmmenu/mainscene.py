@@ -64,7 +64,7 @@ class MainScene(object):
 			except:
 				displayString = "No Network Connection"
 
-			self.ip_addr = PMLabel(displayString, self.cfg.options.font, self.cfg.options.text_color, self.cfg.options.item_color)
+			self.ip_addr = PMLabel(displayString, self.cfg.options.font, self.cfg.options.text_color, self.cfg.options.item_color, self.cfg.options.label_padding)
 			label = pygame.sprite.RenderPlain((self.ip_addr))
 			textpos = self.ip_addr.rect
 			textpos.x = pygame.display.Info().current_w - textpos.width - self.cfg.options.padding
@@ -85,7 +85,7 @@ class MainScene(object):
 			except:
 				displayString = "Could not check for updates"
 
-			self.update_label = PMLabel(displayString, self.cfg.options.font, self.cfg.options.text_color, self.cfg.options.item_color)
+			self.update_label = PMLabel(displayString, self.cfg.options.font, self.cfg.options.text_color, self.cfg.options.item_color, self.cfg.options.label_padding)
 			label = pygame.sprite.RenderPlain((self.update_label))
 			textpos = self.update_label.rect
 			textpos.x = self.cfg.options.padding

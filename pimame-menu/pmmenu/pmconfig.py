@@ -44,6 +44,9 @@ class PMOptions:
 		self.item_color = self.get_color(opts['item_color'])
 		self.header_color = self.get_color(opts['header_color'])
 		self.rom_dot_color = self.get_color(opts['rom_dot_color'])
+		
+		self.label_padding = {"top": opts['label_padding'][0], "right": opts['label_padding'][1], "bottom": opts['label_padding'][2], "left": opts['label_padding'][3]}
+		
 		self.icon_pack_path = opts['icon_pack_path']
 		self.background_image = opts['background_image']
 		self.logo_image = opts['logo_image']
@@ -56,9 +59,11 @@ class PMOptions:
 		self.display_labels = opts['display_labels']
 
 		pygame.font.init()
-		self.font = pygame.font.Font(self.font_file, self.font_size)
+		self.font = pygame.font.Font(self.icon_pack_path + self.font_file, self.font_size)
 
 		self.pre_loaded_background = pygame.image.load(self.icon_pack_path + self.background_image)
+		self.pre_loaded_romlist = pygame.image.load(self.icon_pack_path + 'rom_list.png')
+		self.pre_loaded_romlist_selected = pygame.image.load(self.icon_pack_path + 'rom_list-selected.png')
 		#self.item_width = ((self.resolution[0] - self.padding) / self.num_items_per_row) - self.padding
 
 	def get_color(self, color_str):

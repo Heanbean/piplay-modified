@@ -6,6 +6,8 @@ class RomListScene(object):
 
 	DIRECTION_UP = 'up'
 	DIRECTION_DOWN = 'down'
+	DIRECTION_LEFT = 'left'
+	DIRECTION_RIGHT = 'right'
 
 	selected_item = None
 	sprites = []
@@ -17,7 +19,9 @@ class RomListScene(object):
 		self.rom_list = rom_list
 
 	def draw_bg(self):
-		self.screen.fill(self.cfg.options.background_color)
+		#self.screen.fill(self.cfg.options.background_color)
+		background_image = self.cfg.options.pre_loaded_background
+		self.screen.blit(background_image, (0,0))
 
 	def pre_render(self, screen):
 		self.list = PMList(self.rom_list, self.cfg.options)
@@ -57,6 +61,10 @@ class RomListScene(object):
 					self.set_selected_index(self.DIRECTION_UP)
 				elif event.key == pygame.K_DOWN or event.key == pygame.K_KP2:
 					self.set_selected_index(self.DIRECTION_DOWN)
+				elif event.key == pygame.K_RIGHT or event.key == pygame.K_KP6:
+					self.set_selected_index(self.DIRECTION_RIGHT)
+				elif event.key == pygame.K_LEFT or event.key == pygame.K_KP4:
+					self.set_selected_index(self.DIRECTION_LEFT)
 				elif event.key == pygame.K_RETURN or event.key == pygame.K_SPACE or event.key == pygame.K_KP_ENTER:
 					self.run_sprite_command(self.selected_item)
 				elif event.key == pygame.K_ESCAPE:
@@ -87,6 +95,30 @@ class RomListScene(object):
 			else:
 				selected_index = self.sprites.index(self.selected_item)
 				self.selected_item = self.sprites[selected_index + 1]
+		elif direction == self.DIRECTION_RIGHT:
+			if self.last_visible_item_selected(10):
+				if self.list.last_index < len(self.list.labels)-10:
+					self.selected_item = self.list.labels[self.list.last_index]
+					self.list.set_visible_items(self.list.first_index + 10, self.list.last_index + 10)
+				else:
+					difference = len(self.list.labels) - self.list.last_index
+					self.selected_item = self.list.labels[len(self.list.labels)-1]
+					self.list.set_visible_items(self.list.first_index + difference, self.list.last_index + difference) 
+			else:
+				selected_index = self.sprites.index(self.selected_item)
+				self.selected_item = self.sprites[selected_index + 10]
+		if direction == self.DIRECTION_LEFT:
+			if self.first_visible_item_selected(10):
+				if self.list.first_index >= 10:
+					self.selected_item = self.list.labels[self.list.first_index]
+					self.list.set_visible_items(self.list.first_index - 10, self.list.last_index - 10)
+				else:
+					difference = self.list.first_index
+					self.selected_item = self.list.labels[0]
+					self.list.set_visible_items(self.list.first_index - difference, self.list.last_index - difference) 
+			else:
+				selected_index = self.sprites.index(self.selected_item)
+				self.selected_item = self.sprites[selected_index - 10]
 
 		self.draw()
 
@@ -104,12 +136,11 @@ class RomListScene(object):
 
 		self.list.draw(self.screen)
 
-	def first_visible_item_selected(self):
-		return self.selected_item in self.sprites and self.sprites.index(self.selected_item) == 0
+	def first_visible_item_selected(self, increment = 0):
+		return self.selected_item in self.sprites and self.sprites.index(self.selected_item) <= increment
 
-	def last_visible_item_selected(self):
-		return self.selected_item in self.sprites and self.sprites.index(self.selected_item) == len(self.sprites) - 1
-
+	def last_visible_item_selected(self, increment = 1):
+		return self.selected_item in self.sprites and self.sprites.index(self.selected_item) >= len(self.sprites) - increment
 	def draw(self):
 		self.draw_bg()
 		self.draw_list()
@@ -119,9 +150,12 @@ class RomListScene(object):
 
 		rect.width = pygame.display.Info().current_w
 
-		pygame.draw.rect(self.screen, self.cfg.options.rom_dot_color, rect)
+		#pygame.draw.rect(self.screen, self.cfg.options.rom_dot_color, rect)
+		
+		selected_romlist_image = self.cfg.options.pre_loaded_romlist_selected.convert_alpha()
+		rom_template = PMLabel('', self.cfg.options.font, self.cfg.options.text_color, self.cfg.options.background_color, self.cfg.options.label_padding, selected_romlist_image)
+		selected_label = PMLabel(text, self.cfg.options.font, self.cfg.options.text_highlight_color, self.cfg.options.rom_dot_color, self.cfg.options.label_padding, False,rom_template)
 
-		selected_label = PMLabel(text, self.cfg.options.font, self.cfg.options.text_highlight_color, self.cfg.options.rom_dot_color)
 		self.screen.blit(selected_label.image, rect)
 
 	def run_sprite_command(self, sprite):
