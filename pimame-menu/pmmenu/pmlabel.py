@@ -19,7 +19,7 @@ class PMLabel(pygame.sprite.Sprite):
 				text = font.render(label_text, 1, color_fg)
 				text_rect = text.get_rect()
 				text_rect =  (label_padding['left'] , ((new_rom.icon_rect.h - text_rect.h) / 2) + label_padding['top'])
-				area_rect = [0,0,new_rom.icon_rect.w - label_padding['right'] - label_padding['left'],new_rom.icon_rect.h - label_padding['bottom']]
+				area_rect = [0,0,new_rom.icon_rect.w - label_padding['right'] - label_padding['left'],new_rom.icon_rect.h - label_padding['bottom'] - label_padding['top']]
 				self.image.blit(text, text_rect, area_rect)
 			else:
 				self.icon = create_romlist_image
