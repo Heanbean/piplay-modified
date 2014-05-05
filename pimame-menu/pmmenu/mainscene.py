@@ -47,7 +47,26 @@ class MainScene(object):
 
 	def draw_bg(self):
 		background_image = self.cfg.options.pre_loaded_background
+		background_rect = background_image.get_rect()
+		screen_width = pygame.display.Info().current_w
+		screen_height = pygame.display.Info().current_h
+		scale_size_w = float(screen_width) / float(background_rect.w)
+		scale_size_h = float(screen_height) / float(background_rect.h)
+		if scale_size_w > 1 and scale_size_h > 1:
+			if scale_size_w > scale_size_h:
+				background_rect = (int(background_rect.w * scale_size_w),int(background_rect.h * scale_size_w))
+			else:
+				background_rect = (int(background_rect.w * scale_size_h),int(background_rect.h * scale_size_h))
+		else:
+			if scale_size_w < scale_size_h:
+				background_rect = (int(background_rect.w * scale_size_w),int(background_rect.h * scale_size_w))
+			else:
+				background_rect = (int(background_rect.w * scale_size_h),int(background_rect.h * scale_size_h))
+
+		#self.cfg.options.pre_loaded_background =  pygame.transform.scale(self.cfg.options.pre_loaded_background, background_rect)
+		background_image = self.cfg.options.pre_loaded_background
 		self.screen.blit(background_image, (0,0))
+		
 		#self.screen.fill(self.cfg.options.background_color)
 
 	def draw_header(self):
@@ -64,7 +83,7 @@ class MainScene(object):
 			except:
 				displayString = "No Network Connection"
 
-			self.ip_addr = PMLabel(displayString, self.cfg.options.font, self.cfg.options.text_color, self.cfg.options.item_color, self.cfg.options.label_padding)
+			self.ip_addr = PMLabel(displayString, self.cfg.options.font, self.cfg.options.default_font_color, self.cfg.options.default_font_background_color)
 			label = pygame.sprite.RenderPlain((self.ip_addr))
 			textpos = self.ip_addr.rect
 			textpos.x = pygame.display.Info().current_w - textpos.width - self.cfg.options.padding
@@ -85,7 +104,7 @@ class MainScene(object):
 			except:
 				displayString = "Could not check for updates"
 
-			self.update_label = PMLabel(displayString, self.cfg.options.font, self.cfg.options.text_color, self.cfg.options.item_color, self.cfg.options.label_padding)
+			self.update_label = PMLabel(displayString, self.cfg.options.font, self.cfg.options.default_font_color, self.cfg.options.default_font_background_color)
 			label = pygame.sprite.RenderPlain((self.update_label))
 			textpos = self.update_label.rect
 			textpos.x = self.cfg.options.padding
@@ -109,7 +128,7 @@ class MainScene(object):
 		padding = self.cfg.options.padding
 		screen_width = pygame.display.Info().current_w
 		item_width = ((screen_width - padding) / self.cfg.options.num_items_per_row) - padding
-			
+		
 		self.screen.blit(self.cfg.options.pre_loaded_background, self.selection.rect, pygame.Rect(self.selection.rect[0], self.selection.rect[1], item_width, self.cfg.options.item_height))
 			
 		selection = pygame.sprite.RenderPlain((self.selection))
@@ -147,7 +166,7 @@ class MainScene(object):
 
 		# @TODO: make this background ahead of time!
 		# @TODO: use this get_width() method everywhere instead of get_info()!
-		background = pygame.Surface([self.screen.get_width(), self.screen.get_height()])
+		background = pygame.Surface([self.screen.get_width(), self.screen.get_height()], pygame.SRCALPHA, 32).convert_alpha()
 		background_image = self.cfg.options.pre_loaded_background
 		background.blit(background_image, (0,0))
 		#background.fill(self.cfg.options.background_color)     # fill white
@@ -159,7 +178,7 @@ class MainScene(object):
 		if not self.pre_rendered:
 			self.header = PMHeader(self.cfg.options)
 			self.selection = PMSelection(self.cfg.options)
-			self.grid = PMGrid(self.cfg.config['menu_items'], self.cfg.options)
+			self.grid = PMGrid(self.cfg.options.options_menu_items, self.cfg.options)
 			self.grid.set_num_items_per_page(self.calc_num_items_per_page())
 			self.pre_rendered = True
 

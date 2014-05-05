@@ -15,10 +15,10 @@ class PMHeader(pygame.sprite.Sprite):
 		self.image = pygame.Surface([header_width, header_height], pygame.SRCALPHA, 32).convert_alpha()
 		background_image = opts.pre_loaded_background
 		self.image.blit(background_image, (0,0))
-		#self.image.fill(opts.header_color)
+		self.image.fill(opts.header_color)
 
-		icon_file_path = opts.icon_pack_path + opts.logo_image
-		icon = pygame.image.load(icon_file_path).convert_alpha()
+		icon_file_path = opts.theme_pack + opts.logo_image
+		icon = opts.load_image(icon_file_path)
 
 
 		icon_rect = icon.get_rect()

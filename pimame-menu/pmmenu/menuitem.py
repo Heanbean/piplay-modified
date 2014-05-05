@@ -20,8 +20,8 @@ class PMMenuItem(pygame.sprite.Sprite):
 		self.command = item_opts['command']
 		self.full_path = item_opts['full_path']
 		if item_opts['icon_selected']: 
-			self.icon_selected = global_opts.icon_pack_path + item_opts['icon_selected']
-			self.pre_loaded_selected_icon = pygame.image.load(self.icon_selected).convert_alpha()
+			self.icon_selected = global_opts.theme_pack + item_opts['icon_selected']
+			self.pre_loaded_selected_icon = global_opts.load_image(self.icon_selected, global_opts.generic_menu_item_selected)
 		else:
 			self.icon_selected = False
 		#self.extension = item_opts['extension']
@@ -69,8 +69,8 @@ class PMMenuItem(pygame.sprite.Sprite):
 		#self.image.fill(global_opts.item_color)
 
 		if item_opts['icon_file']:
-			icon_file_path = global_opts.icon_pack_path + item_opts['icon_file']
-			icon = pygame.image.load(icon_file_path).convert_alpha()
+			icon_file_path = global_opts.theme_pack + item_opts['icon_file']
+			icon = global_opts.load_image(icon_file_path, global_opts.generic_menu_item)
 
 			# resize and center icon:
 			icon_size = icon.get_size()
@@ -100,10 +100,10 @@ class PMMenuItem(pygame.sprite.Sprite):
 		#font = pygame.font.Font(global_opts.font_file, global_opts.font_size)
 		#text = font.render(self.label, 1, (0, 0, 0))
 		if global_opts.display_labels:
-			label = PMLabel(self.label, global_opts.font, global_opts.text_color, global_opts.item_color, global_opts.label_padding)
+			label = PMLabel(self.label, global_opts.label_font, global_opts.label_font_color, global_opts.label_background_color)
 			textpos = label.rect
-			textpos.x = global_opts.padding
-			textpos.y = global_opts.item_height - textpos.height - global_opts.padding
+			textpos.x = global_opts.labels_offset[0]
+			textpos.y = global_opts.labels_offset[1]
 
 			self.image.blit(label.image, textpos)
 
@@ -116,11 +116,10 @@ class PMMenuItem(pygame.sprite.Sprite):
 					self.image.set_alpha(64)
 				else:
 					# draw rom circle
-					rom_rect = (item_width - global_opts.padding - 30, global_opts.item_height - global_opts.padding - 30, 30, 30)
-					pygame.draw.rect(self.image, global_opts.rom_dot_color, rom_rect)
+					rom_rect = (global_opts.rom_count_offset[0], global_opts.rom_count_offset[1],30,30)
 
 					#text = font.render(str(num_roms), 1, (255, 255, 255))
-					label = PMLabel(str(self.num_roms), global_opts.font, global_opts.text_highlight_color, global_opts.rom_dot_color, global_opts.label_padding)
+					label = PMLabel(str(self.num_roms), global_opts.rom_count_font, global_opts.rom_count_font_color, global_opts.rom_count_background_color)
 					textpos = label.rect
 
 					textpos.centerx = rom_rect[0] + rom_rect[2] / 2
@@ -154,7 +153,7 @@ class PMMenuItem(pygame.sprite.Sprite):
 				{
 					'title': f,
 					'type': 'command',
-					'command': self.command + " " +  os.path.splitext(os.path.basename(f))[0] 
+					'command': self.command + ' \"' +  os.path.splitext(os.path.basename(f))[0] + '\"' 
 				}
 				for f in listdir(self.roms) if isfile(join(self.roms, f)) and f != '.gitkeep'
 			]
@@ -163,7 +162,7 @@ class PMMenuItem(pygame.sprite.Sprite):
 								{
 										'title': f,
 										'type': 'command',
-										'command': self.command + ' \'' +  os.path.splitext(os.path.basename(f))[0] + os.path.splitext(os.path.basename(f))[1] + '\''
+										'command': self.command + ' \"' +  os.path.splitext(os.path.basename(f))[0] + os.path.splitext(os.path.basename(f))[1] + '\"'
 								}
 								for f in listdir(self.roms) if isfile(join(self.roms, f)) and f != '.gitkeep' 
 						]
@@ -174,7 +173,7 @@ class PMMenuItem(pygame.sprite.Sprite):
 			{
 				'title': f,
 				'type': 'command',
-				'command': self.command + ' \'' + self.roms + f +'\'' 
+				'command': self.command + ' \"' + self.roms + f +'\"' 
 			}
 			for f in listdir(self.roms) if isfile(join(self.roms, f)) and f != '.gitkeep' 
 		]

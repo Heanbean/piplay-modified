@@ -1,38 +1,16 @@
 options:
   max_fps: 20
-  show_ip: No
+  show_ip: yes
   show_update: Yes
-  num_items_per_row: 1
   fullscreen: Yes
   resolution: "0,0"
-  item_height: 55
-  padding: 0
-  selection_size: 11
-  header_height: 140
-  disabled_alpha: 128
-  background_color: "74,239,76,0"
-  selection_color: "74,239,76"
-  text_color: "0,255,255"
-  text_highlight_color: "90,255,255"
-  item_color: "255,255,255"
-  header_color: "255,255,255"
-  rom_dot_color: "228,56,65"
-  label_padding: [0, 30, 0, 20]   #[top, right, bottom, left]
-  icon_pack_path: "icons/Tron/"
-  background_image: "background2.jpg"
-  logo_image: "logo.png"
-  font_size: 19
-  font_file: "default.ttf"
   sort_items_alphanum: No
   sort_items_with_roms_first: Yes
   hide_items_without_roms: No
-  display_labels: No
-  display_rom_count: No
+  theme_pack: "default" #name of the folder in /home/pi/pimame/pimame-menu/themes/
 menu_items:
   - label: SNES
     visible: Yes
-    icon_file: snes.png
-    icon_selected: snes-selected.png
     roms: /home/pi/pimame/roms/snes/
     full_path: yes
     override_menu: no
@@ -40,17 +18,13 @@ menu_items:
 
   - label: MAME4All
     visible: Yes
-    icon_file: mame4all.png
-    icon_selected: mame4all-selected.png
-    roms: /home/pi/pimame/roms/mame4all/
+    roms: /home/pi/pimame/roms/mame4all/1/
     full_path: no
     override_menu: no
     command: /home/pi/pimame/emulators/mame4all-pi/mame 
 
   - label: Neo Geo
     visible: Yes
-    icon_file: neogeo.png
-    icon_selected: neogeo-selected.png
     roms: /home/pi/pimame/roms/neogeo/
     full_path: yes
     extension: yes
@@ -58,16 +32,12 @@ menu_items:
 
   - label: AdvMAME
     visible: Yes
-    icon_file: advmame.png
-    icon_selected: advmame-selected.png
-    roms: /home/pi/pimame/roms/advmame/
+    roms: /home/pi/pimame/roms/advmame/1/
     full_path: no
     command: advmame 
 
   - label: Final Burn
     visible: Yes
-    icon_file: fba.png
-    icon_selected: fba-selected.png
     roms: /home/pi/pimame/roms/pifba/
     full_path: yes
     extension: yes
@@ -76,16 +46,12 @@ menu_items:
 
   - label: Genesis
     visible: Yes
-    icon_file: genesis.png
-    icon_selected: genesis-selected.png
     roms: /home/pi/pimame/roms/genesis/
     full_path: yes
     command: /home/pi/pimame/emulators/dgen-sdl-1.32/dgen
 
   - label: NES
     visible: Yes
-    icon_file: nes.png
-    icon_selected: nes-selected.png
     roms: /home/pi/pimame/roms/nes/
     full_path: no
     extension: yes
@@ -93,8 +59,6 @@ menu_items:
 
   - label: Atari 2600
     visible: Yes
-    icon_file: 2600.png
-    icon_selected: 2600-selected.png
     full_path: no
     command: stella
     roms: /home/pi/pimame/roms/2600/
@@ -102,8 +66,6 @@ menu_items:
 
   - label: Playstation 1
     visible: Yes
-    icon_file: psx.png
-    icon_selected: psx-selected.png
     full_path: no
     command: /home/pi/pimame/emulators/pcsx_rearmed/pcsx
     override_menu: yes
@@ -112,8 +74,6 @@ menu_items:
 
   - label: Commodore 64
     visible: Yes
-    icon_file: c64.png
-    icon_selected: c64-selected.png
     roms: /home/pi/roms/c64/
     full_path: no
     override_menu: yes
@@ -121,8 +81,6 @@ menu_items:
 
   - label: ScummVM
     visible: Yes
-    icon_file: scummvm.png
-    icon_selected: scummvm-selected.png
     full_path: no
     command: scummvm
     override_menu: yes
@@ -131,16 +89,12 @@ menu_items:
 
   - label: Gameboy
     visible: Yes
-    icon_file: gameboy.png
-    icon_selected: gameboy-selected.png
     roms: /home/pi/pimame/roms/gb/
     full_path: yes
     command: /home/pi/pimame/emulators/Gearboy/platforms/raspberrypi/Gearboy/gearboy.bin
 
   - label: Gameboy Advance
     visible: Yes
-    icon_file: gba.png
-    icon_selected: gba-selected.png
     full_path: no
     command: /home/pi/pimame/emulators/gpsp/gpsp
     override_menu: yes
@@ -149,24 +103,18 @@ menu_items:
   - label: Restart
     visible: Yes
     full_path: no
-    icon_file: restart.png
-    icon_selected: restart-selected.png
     command: sudo reboot
     override_menu: yes
 
   - label: Shutdown
     visible: Yes
     full_path: no
-    icon_file: shutdown.png
-    icon_selected: shutdown-selected.png
     command: sudo poweroff
     override_menu: yes
 
   - label: Update PiMAME
     visible: Yes
     full_path: no
-    icon_file: update.png
-    icon_selected: update-selected.png
     command: wget -O - http://pimame.org/update.sh | bash
     override_menu: yes
 
